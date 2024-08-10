@@ -4,7 +4,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon -r dotenv/config --experimental-json-modules backend/index.js"
+    "dev": "nodemon -r dotenv/config --experimental-json-modules backend/index.js",
+    "start": "node backend/index.js",
+    "build": "npm install && npm install --prefix Ecommerce && npm run build --prefix Ecommerce"
+    
   },
   "author": "",
   "license": "ISC",
