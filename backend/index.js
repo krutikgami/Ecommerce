@@ -6,6 +6,7 @@ import userroutes from './routes/User.routes.js';
 import Vendorroute from './routes/Vendor.routes.js'
 import cors from 'cors'
 import bodyParser from 'body-parser';
+import path from 'path'
 dotenv.config({
     path: '../.env'
 });
@@ -31,8 +32,13 @@ connect_db()
         app.listen(3000, () => console.log('Server is running on port 3000'));
     })
     .catch((err) => console.log('Mongodb connection error', err));
+const __dirname = path.resolve();
 
 app.use('/api/v1/users',CartRoute)
 app.use('/api/v1/users', userroutes);
 app.use('/api/v1/admin', Vendorroute);
 
+app.use(express.static(path.join(__dirname,'/Ecommerce/dist')));
+app.get('*',(req,res)=>{
+    res.sendFile(path.join(__dirname,'Ecommerce','dist','index.html'));
+});
